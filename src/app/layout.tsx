@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { Inter } from "next/font/google";
+import { ModeToggle } from "@/components/modeToggle";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased [--pattern-fg: var(--color-neutral-900)]/5 dark:[--pattern-fg:var(--color-neutral-50)]/10`}>
+        className={`${inter.variable} antialiased font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="bg-background text-foreground h-screen">
+          <main className="bg-background text-foreground">
             {children}
           </main>
+          <ModeToggle />
         </ThemeProvider>
       </body>
     </html>
